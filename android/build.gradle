@@ -1,0 +1,44 @@
+// @zebchat/react-native Android module. The host app's root build script provides the Android
+// Gradle plugin and Kotlin (every React Native 0.74+ app does); versions follow the host's ext.
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+
+def safeExtGet(String name, Object fallback) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : fallback
+}
+
+// The ZebChat Android SDK. Published to Maven Central; in development, publish it locally with
+// `cd sdks/android && ./gradlew publishToMavenLocal` (resolved through mavenLocal() below).
+def zebchatAndroidVersion = safeExtGet("zebchatAndroidVersion", "1.0.0")
+
+android {
+  namespace "com.zebchat.reactnative"
+  compileSdk safeExtGet("compileSdkVersion", 35)
+
+  defaultConfig {
+    minSdk safeExtGet("minSdkVersion", 23)
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+  compilerOptions {
+    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+  }
+}
+
+repositories {
+  mavenLocal()
+  google()
+  mavenCentral()
+}
+
+dependencies {
+  // Version comes from the React Native Gradle plugin.
+  implementation "com.facebook.react:react-android"
+  implementation "com.zebchat:chat:${zebchatAndroidVersion}"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import", "react", "jest"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "env": {
+    "es2024": true
+  },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "react/react-in-jsx-scope": "off",
+    "unicorn/no-null": "off"
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "dist/**",
+    "android/**",
+    "ios/**",
+    "example/android/**",
+    "example/ios/**"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.mjs", "**/*.cjs"],
+      "env": { "node": true }
+    },
+    {
+      "files": ["example/scripts/**"],
+      "rules": { "no-console": "off" }
+    }
+  ]
+}

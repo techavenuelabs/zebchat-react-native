@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@zebchat/react-native": ["../src/index.ts"]
+    }
+  },
+  "include": ["App.tsx"]
+}

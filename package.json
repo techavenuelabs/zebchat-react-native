@@ -1,0 +1,80 @@
+{
+  "name": "@zebchat/react-native",
+  "version": "1.0.0",
+  "description": "ZebChat live chat for React Native apps: wraps the ZebChat Android and iOS SDKs.",
+  "license": "MIT",
+  "author": "ZebChat <hello@zebchat.com>",
+  "homepage": "https://www.zebchat.com/docs/mobile-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techavenuelabs/zebchat-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techavenuelabs/zebchat-react-native/issues"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "live-chat",
+    "chat",
+    "customer-support",
+    "zebchat"
+  ],
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/module/index.js",
+  "types": "./dist/typescript/index.d.ts",
+  "source": "./src/index.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/typescript/index.d.ts",
+      "import": "./dist/module/index.js",
+      "require": "./dist/commonjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "!src/__tests__",
+    "dist",
+    "android/build.gradle",
+    "android/src",
+    "ios",
+    "react-native.config.js",
+    "zebchat-react-native.podspec"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint --deny-warnings",
+    "test": "jest",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-native": ">=0.74.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.0",
+    "@babel/preset-typescript": "^7.27.0",
+    "@jest/globals": "^30.5.0",
+    "@types/react": "^19.1.1",
+    "@types/react-test-renderer": "^19.1.0",
+    "babel-jest": "^30.5.0",
+    "jest": "^30.5.0",
+    "oxlint": "^1.87.0",
+    "react": "19.2.3",
+    "react-native": "0.87.1",
+    "react-test-renderer": "19.2.3",
+    "typescript": "~6.0.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
